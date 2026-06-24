@@ -48,6 +48,69 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+@theme {
+  /* Primary and Brand Colors */
+  --color-primary: #DC2626;
+  --color-primary-dark: #B91C1C;
+  --color-primary-light: #FEE2E2;
+
+  /* Pokémon Type Colors */
+  --color-type-normal: #9CA3AF;
+  --color-type-fire: #F97316;
+  --color-type-water: #3B82F6;
+  --color-type-electric: #EAB308;
+  --color-type-grass: #22C55E;
+  --color-type-ice: #67E8F9;
+  --color-type-fighting: #DC2626;
+  --color-type-poison: #A855F7;
+  --color-type-ground: #CA8A04;
+  --color-type-flying: #818CF8;
+  --color-type-psychic: #EC4899;
+  --color-type-bug: #84CC16;
+  --color-type-rock: #A16207;
+  --color-type-ghost: #7C3AED;
+  --color-type-dragon: #4F46E5;
+  --color-type-dark: #374151;
+  --color-type-steel: #6B7280;
+  --color-type-fairy: #F472B6;
+
+  /* Font Families */
+  --font-display: var(--font-display), sans-serif;
+  --font-body: var(--font-body), sans-serif;
+  --font-mono: var(--font-mono), monospace;
+
+  /* Border Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  /* Box Shadows */
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+
+  /* Keyframes & Animations */
+  @keyframes bounce-in {
+    0% { transform: scale(0.6); opacity: 0; }
+    70% { transform: scale(1.08); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes pokeball-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes stat-fill {
+    from { width: 0%; }
+    to { width: var(--stat-width); }
+  }
+
+  --animate-bounce-in: bounce-in 300ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  --animate-pokeball: pokeball-spin 800ms linear infinite;
+  --animate-stat-fill: stat-fill 300ms ease-out forwards;
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -81,6 +144,19 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Project Design System CSS Variables */
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-surface-raised: #F1F5F9;
+  --color-border: #E2E8F0;
+  --color-border-strong: #CBD5E1;
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #64748B;
+  --color-text-muted: #94A3B8;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
 }
 
 .dark {
@@ -122,9 +198,20 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
   }
   html {
     @apply font-sans;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

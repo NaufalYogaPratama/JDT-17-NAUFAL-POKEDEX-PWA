@@ -1,7 +1,9 @@
+import PageWrapper from '@/components/layout/PageWrapper'
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+    <PageWrapper className="flex flex-col items-center justify-center">
       <h1 className="text-4xl font-bold">PokéDex PWA</h1>
-    </main>
+    </PageWrapper>
   )
 }

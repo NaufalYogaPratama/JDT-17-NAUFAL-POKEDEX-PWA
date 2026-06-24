@@ -22,11 +22,11 @@ export interface PokemonStore {
   removeCapturedPokemon: (nickname: string) => void
   renameCapturedPokemon: (nickname: string, newNickname: string) => void
   loadFromStorage: () => void
-}PokemonStore
+}
 
-export const usePokemonStore = create<>((set) => ({
+export const usePokemonStore = create<PokemonStore>((set) => ({
   searchQuery: '',
-  setSearchQuery: (q) => set({ searchQuery: q }),
+  setSearchQuery: (q: string) => set({ searchQuery: q }),
   selectedType: null,
   setSelectedType: (type) => set({ selectedType: type }),
 

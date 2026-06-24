@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Nunito, Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Providers from './providers'
+import AppHeader from '@/components/layout/AppHeader'
+import BottomNav from '@/components/layout/BottomNav'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -36,7 +38,9 @@ export default function RootLayout({
       className={`${nunito.variable} ${inter.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
+        <AppHeader />
         <Providers>{children}</Providers>
+        <BottomNav />
       </body>
     </html>
   )
