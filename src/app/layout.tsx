@@ -4,6 +4,7 @@ import './globals.css'
 import Providers from './providers'
 import AppHeader from '@/components/layout/AppHeader'
 import BottomNav from '@/components/layout/BottomNav'
+import StorageInitializer from '@/components/providers/StorageInitializer'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -38,6 +39,7 @@ export default function RootLayout({
       className={`${nunito.variable} ${inter.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
+        <StorageInitializer />
         <AppHeader />
         <Providers>{children}</Providers>
         <BottomNav />
@@ -45,3 +47,4 @@ export default function RootLayout({
     </html>
   )
 }
+
