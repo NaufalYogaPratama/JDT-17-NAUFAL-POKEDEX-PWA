@@ -17,6 +17,8 @@ export const TYPE_COLORS: Record<string, string> = {
   dark: '#374151',
   steel: '#6B7280',
   fairy: '#F472B6',
+  legendary: '#FBBF24',
+  mythical: '#C084FC',
 }
 
 export const TYPE_NEEDS_LIGHT_TEXT = new Set<string>([
@@ -27,6 +29,7 @@ export const TYPE_NEEDS_LIGHT_TEXT = new Set<string>([
   'poison',
   'rock',
   'ground',
+  'mythical',
 ])
 
 export function getTypeTextColor(type: string): string {

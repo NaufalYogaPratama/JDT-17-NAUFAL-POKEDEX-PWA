@@ -1,7 +1,9 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { usePokemonDetail } from '@/hooks/usePokemonDetail'
+import { usePokemonSpecies } from '@/hooks/usePokemonSpecies'
 import DetailSkeleton from '@/components/pokemon/DetailSkeleton'
 import ErrorState from '@/components/pokemon/ErrorState'
 import ArtworkContainer from '@/components/pokemon/ArtworkContainer'
@@ -10,6 +12,8 @@ import TypeBadge from '@/components/pokemon/TypeBadge'
 import StatBar from '@/components/pokemon/StatBar'
 import SectionLabel from '@/components/layout/SectionLabel'
 import CatchButton from '@/components/pokemon/CatchButton'
+import SpeciesCard from '@/components/pokemon/SpeciesCard'
+import { Skeleton } from '@/components/ui/skeleton'
 import { capitalize, formatHeight, formatWeight, formatStatName } from '@/lib/utils'
 
 export default function PokemonDetailPage() {
@@ -18,6 +22,14 @@ export default function PokemonDetailPage() {
   const id = idStr ? parseInt(idStr, 10) : NaN
 
   const { data, isLoading, isError, refetch } = usePokemonDetail(id)
+  const { data: speciesData, isLoading: isSpeciesLoading } = usePokemonSpecies(data?.id)
+  const [evolutionChainUrl, setEvolutionChainUrl] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (speciesData?.evolution_chain?.url) {
+      setEvolutionChainUrl(speciesData.evolution_chain.url)
+    }
+  }, [speciesData])
 
   if (isLoading) {
     return <DetailSkeleton />
@@ -94,12 +106,18 @@ export default function PokemonDetailPage() {
           </div>
         </div>
 
-        {/* Section 4 - Species Stub */}
+        {/* Section 4 - Species */}
         <div className="pt-2">
           <SectionLabel>Species</SectionLabel>
-          <div className="bg-slate-50 border border-slate-100 rounded-[14px] p-4 text-slate-400 text-sm font-medium">
-            Species data coming soon...
-          </div>
+          {isSpeciesLoading ? (
+            <Skeleton className="h-36 rounded-[14px] w-full" />
+          ) : speciesData ? (
+            <SpeciesCard species={speciesData} />
+          ) : (
+            <div className="bg-slate-50 border border-slate-100 rounded-[14px] p-4 text-slate-400 text-sm font-medium">
+              Species data not available.
+            </div>
+          )}
         </div>
 
         {/* Section 5 - Evolution Stub */}

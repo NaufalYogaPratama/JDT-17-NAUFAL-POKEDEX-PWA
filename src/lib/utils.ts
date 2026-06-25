@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { PokemonSpecies } from "@/types/pokemon"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -57,3 +58,33 @@ export function timeAgo(dateStr: string): string {
   return `${years}y ago`
 }
 
+export function getEnglishGenus(species: PokemonSpecies): string {
+  const entry = species.genera.find((g) => g.language.name === 'en')
+  return entry ? entry.genus : ''
+}
+
+export function getEnglishFlavorText(
+  species: PokemonSpecies,
+  preferredVersion?: string
+): { text: string; version: string } {
+  const englishEntries = species.flavor_text_entries.filter(
+    (entry) => entry.language.name === 'en'
+  )
+
+  if (englishEntries.length === 0) {
+    return { text: '', version: '' }
+  }
+
+  let targetEntry = englishEntries[0]
+  if (preferredVersion) {
+    const preferred = englishEntries.find(
+      (entry) => entry.version.name === preferredVersion
+    )
+    if (preferred) {
+      targetEntry = preferred
+    }
+  }
+
+  const cleanedText = targetEntry.flavor_text.replace(/[\n\f\r]+/g, ' ')
+  return { text: cleanedText, version: targetEntry.version.name }
+}
