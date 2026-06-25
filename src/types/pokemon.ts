@@ -88,8 +88,32 @@ export const PokemonSpeciesSchema = z.object({
 })
 export type PokemonSpecies = z.infer<typeof PokemonSpeciesSchema>
 
-// EvolutionChainSchema placeholder
-export const EvolutionChainSchema = z.object({})
+export const EvolutionDetailSchema = z.object({
+  min_level: z.number().nullable(),
+  trigger: z.object({ name: z.string() }),
+  item: z.object({ name: z.string() }).nullable(),
+  min_happiness: z.number().nullable(),
+})
+export type EvolutionDetail = z.infer<typeof EvolutionDetailSchema>
+
+export type ChainLink = {
+  species: { name: string; url: string }
+  evolution_details: EvolutionDetail[]
+  evolves_to: ChainLink[]
+}
+
+export const ChainLinkSchema: z.ZodType<ChainLink> = z.lazy(() =>
+  z.object({
+    species: z.object({ name: z.string(), url: z.string() }),
+    evolution_details: z.array(EvolutionDetailSchema),
+    evolves_to: z.array(ChainLinkSchema),
+  })
+)
+
+export const EvolutionChainSchema = z.object({
+  id: z.number(),
+  chain: ChainLinkSchema,
+})
 export type EvolutionChain = z.infer<typeof EvolutionChainSchema>
 
 // CapturedPokemonSchema

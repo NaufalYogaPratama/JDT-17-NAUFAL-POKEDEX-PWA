@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { PokemonSpecies } from "@/types/pokemon"
+import { PokemonSpecies, ChainLink, EvolutionDetail } from "@/types/pokemon"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -87,4 +87,41 @@ export function getEnglishFlavorText(
 
   const cleanedText = targetEntry.flavor_text.replace(/[\n\f\r]+/g, ' ')
   return { text: cleanedText, version: targetEntry.version.name }
+}
+
+export type EvolutionStage = {
+  speciesName: string
+  pokemonId: number
+  evolutionDetails: EvolutionDetail[]
+  evolvesTo: EvolutionStage[]
+}
+
+export function flattenEvolutionChain(chain: ChainLink): EvolutionStage {
+  const parts = chain.species.url.split('/').filter(Boolean)
+  const pokemonId = parseInt(parts[parts.length - 1], 10)
+
+  return {
+    speciesName: chain.species.name,
+    pokemonId,
+    evolutionDetails: chain.evolution_details,
+    evolvesTo: chain.evolves_to.map(flattenEvolutionChain),
+  }
+}
+
+export function isLinearChain(root: EvolutionStage): boolean {
+  if (root.evolvesTo.length === 0) return true
+  if (root.evolvesTo.length > 1) return false
+  return isLinearChain(root.evolvesTo[0])
+}
+
+export function getEvolutionTriggerLabel(details: EvolutionDetail[]): string {
+  if (!details || details.length === 0) return 'Evolve'
+  
+  const detail = details[0]
+  if (detail.min_level) return `Lv. ${detail.min_level}`
+  if (detail.item?.name) return `Use ${capitalize(detail.item.name.replace(/-/g, ' '))}`
+  if (detail.min_happiness) return 'Friendship'
+  if (detail.trigger?.name === 'trade') return 'Trade'
+  
+  return 'Evolve'
 }
