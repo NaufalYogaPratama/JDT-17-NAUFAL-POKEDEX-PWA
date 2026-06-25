@@ -64,8 +64,28 @@ export const PokemonDetailSchema = z.object({
 })
 export type PokemonDetail = z.infer<typeof PokemonDetailSchema>
 
-// PokemonSpeciesSchema placeholder
-export const PokemonSpeciesSchema = z.object({})
+// PokemonSpeciesSchema
+export const PokemonSpeciesSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  genera: z.array(
+    z.object({
+      genus: z.string(),
+      language: z.object({ name: z.string() }),
+    })
+  ),
+  flavor_text_entries: z.array(
+    z.object({
+      flavor_text: z.string(),
+      language: z.object({ name: z.string() }),
+      version: z.object({ name: z.string() }),
+    })
+  ),
+  habitat: z.object({ name: z.string() }).nullable(),
+  is_legendary: z.boolean(),
+  is_mythical: z.boolean(),
+  evolution_chain: z.object({ url: z.string() }),
+})
 export type PokemonSpecies = z.infer<typeof PokemonSpeciesSchema>
 
 // EvolutionChainSchema placeholder

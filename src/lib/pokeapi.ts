@@ -3,6 +3,8 @@ import {
   PokemonDetailSchema,
   PokemonListResponse,
   PokemonListResponseSchema,
+  PokemonSpecies,
+  PokemonSpeciesSchema,
 } from '@/types/pokemon'
 
 const BASE_URL = 'https://pokeapi.co/api/v2'
@@ -42,4 +44,15 @@ export async function fetchPokemonByType(type: string): Promise<string[]> {
   }
 
   return data.pokemon.map((p: any) => p.pokemon.name)
+}
+
+export async function fetchPokemonSpecies(
+  idOrName: string | number
+): Promise<PokemonSpecies> {
+  const response = await fetch(`${BASE_URL}/pokemon-species/${idOrName}`)
+  if (!response.ok) {
+    throw new Error(`Failed to fetch Pokémon species for ${idOrName}: ${response.statusText}`)
+  }
+  const data = await response.json()
+  return PokemonSpeciesSchema.parse(data)
 }
