@@ -31,7 +31,8 @@ export default function PokemonDetailPage() {
   const totalStats = data.stats.reduce((acc, stat) => acc + stat.base_stat, 0)
   const officialSprite =
     data.sprites.other?.['official-artwork']?.front_default ||
-    data.sprites.front_default
+    data.sprites.front_default ||
+    ''
 
   return (
     <div className="w-full min-h-screen bg-white pb-32 relative">
@@ -111,15 +112,12 @@ export default function PokemonDetailPage() {
       </div>
 
       {/* Section 6 - Sticky Catch Button Container */}
-      <div className="fixed bottom-16 left-0 right-0 px-4 pb-4 pt-6 bg-gradient-to-t from-slate-50 via-slate-50/90 to-transparent z-10">
-        <div className="max-w-md mx-auto">
-          <CatchButton
-            pokemonId={data.id}
-            pokemonName={data.name}
-            onCatch={() => console.log('catch')}
-          />
-        </div>
-      </div>
+      <CatchButton
+        pokemonId={data.id}
+        pokemonName={data.name}
+        types={types}
+        spriteUrl={officialSprite}
+      />
     </div>
   )
 }
