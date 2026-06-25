@@ -5,6 +5,8 @@ import {
   PokemonListResponseSchema,
   PokemonSpecies,
   PokemonSpeciesSchema,
+  EvolutionChain,
+  EvolutionChainSchema,
 } from '@/types/pokemon'
 
 const BASE_URL = 'https://pokeapi.co/api/v2'
@@ -56,3 +58,15 @@ export async function fetchPokemonSpecies(
   const data = await response.json()
   return PokemonSpeciesSchema.parse(data)
 }
+
+export async function fetchEvolutionChain(
+  url: string
+): Promise<EvolutionChain> {
+  const response = await fetch(url)
+  if (!response.ok) {
+    throw new Error(`Failed to fetch Evolution Chain: ${response.statusText}`)
+  }
+  const data = await response.json()
+  return EvolutionChainSchema.parse(data)
+}
+

@@ -13,6 +13,7 @@ import StatBar from '@/components/pokemon/StatBar'
 import SectionLabel from '@/components/layout/SectionLabel'
 import CatchButton from '@/components/pokemon/CatchButton'
 import SpeciesCard from '@/components/pokemon/SpeciesCard'
+import EvolutionChain from '@/components/pokemon/EvolutionChain'
 import { Skeleton } from '@/components/ui/skeleton'
 import { capitalize, formatHeight, formatWeight, formatStatName } from '@/lib/utils'
 
@@ -120,12 +121,18 @@ export default function PokemonDetailPage() {
           )}
         </div>
 
-        {/* Section 5 - Evolution Stub */}
+        {/* Section 5 - Evolution */}
         <div className="pt-2">
           <SectionLabel>Evolution</SectionLabel>
-          <div className="bg-slate-50 border border-slate-100 rounded-[14px] p-4 text-slate-400 text-sm font-medium">
-            Evolution chain coming soon...
-          </div>
+          {evolutionChainUrl ? (
+            <EvolutionChain chainUrl={evolutionChainUrl} currentPokemonId={data.id} />
+          ) : !isSpeciesLoading ? (
+            <div className="bg-slate-50 border border-slate-100 rounded-[14px] p-4 text-slate-400 text-sm font-medium">
+              No evolution data available.
+            </div>
+          ) : (
+            <Skeleton className="h-32 rounded-[14px] w-full" />
+          )}
         </div>
       </div>
 
