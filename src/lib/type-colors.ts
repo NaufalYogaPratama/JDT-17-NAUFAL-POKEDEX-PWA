@@ -19,6 +19,7 @@ export const TYPE_COLORS: Record<string, string> = {
   fairy: '#F472B6',
 }
 
+<<<<<<< Updated upstream
 export const TYPE_NEEDS_LIGHT_TEXT = new Set<string>([
   'fighting',
   'ghost',
@@ -28,11 +29,11 @@ export const TYPE_NEEDS_LIGHT_TEXT = new Set<string>([
   'rock',
   'ground',
 ])
+=======
+export const TYPE_NEEDS_LIGHT_TEXT = new Set<string>([])
+>>>>>>> Stashed changes
 
 export function getTypeTextColor(type: string): string {
   const normalizedType = type.toLowerCase()
-  if (TYPE_NEEDS_LIGHT_TEXT.has(normalizedType)) {
-    return '#FFFFFF'
-  }
   return TYPE_COLORS[normalizedType] || '#000000'
 }
