@@ -34,9 +34,15 @@ export default function PokemonCard({
       <article>
         {/* Art Container */}
         <div
-          className="h-28 w-full flex items-center justify-center relative"
+          className="relative h-28 md:h-32 w-full flex items-center justify-center"
           style={{ backgroundColor: bgOpacityHex }}
         >
+          <img
+            src="/icons/pokeball.svg"
+            alt=""
+            aria-hidden="true"
+            className="absolute right-1 bottom-1 w-14 h-14 opacity-[0.08] pointer-events-none select-none"
+          />
           {spriteUrl ? (
             <Image
               src={spriteUrl}
@@ -44,10 +50,10 @@ export default function PokemonCard({
               width={96}
               height={96}
               priority={id <= 20}
-              className="object-contain"
+              className="object-contain relative z-10"
             />
           ) : (
-            <div className="w-[96px] h-[96px]" />
+            <div className="w-[96px] h-[96px] relative z-10" />
           )}
         </div>
 

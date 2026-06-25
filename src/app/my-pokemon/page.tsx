@@ -60,9 +60,12 @@ export default function MyPokemonPage() {
   return (
     <PageWrapper className="pb-24">
       {/* Header Row */}
-      <div className="flex items-center justify-between mb-5">
-        <h1 className="font-display text-xl font-extrabold text-slate-900">My Pokédex</h1>
-        <Badge variant="secondary" className="bg-slate-200/60 hover:bg-slate-200/60 text-slate-700 font-semibold px-2.5 py-0.5 rounded-full text-xs border-none">
+      <div className="flex items-center justify-between mb-5 mt-6">
+        <div>
+          <h1 className="font-display text-xl lg:text-2xl font-extrabold text-slate-900">My Pokédex</h1>
+          <p className="hidden lg:block text-sm text-slate-400 mt-0.5">Your captured collection</p>
+        </div>
+        <Badge variant="secondary" className="bg-slate-200/60 hover:bg-slate-200/60 text-slate-700 font-semibold px-2.5 py-0.5 lg:px-3 lg:py-1 rounded-full text-xs lg:text-sm border-none">
           {capturedPokemon.length} Pokémon
         </Badge>
       </div>
@@ -88,7 +91,7 @@ export default function MyPokemonPage() {
           </div>
 
           {/* Grid */}
-          <div className="grid grid-cols-2 gap-3 mb-8">
+          <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mb-8">
             {sortedPokemon.map((pokemon) => (
               <MyPokemonCard
                 key={`${pokemon.id}-${pokemon.nickname}`}

@@ -44,7 +44,7 @@ export default function EvolutionChain({
     if (stages.length <= 1) return null
 
     return (
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
+      <div className="flex items-center gap-2 overflow-x-auto py-2 px-1 scrollbar-hide">
         {stages.map((stage, i) => (
           <div key={stage.pokemonId} className="flex items-center gap-2">
             {i > 0 && (
@@ -65,7 +65,7 @@ export default function EvolutionChain({
   // Branching Chain (Eevee style)
   // For MVP, we only render root -> first evolutions
   return (
-    <div className="flex items-center gap-4 overflow-x-auto pb-2 scrollbar-hide">
+    <div className="flex items-center gap-4 overflow-x-auto py-2 px-1 scrollbar-hide">
       <EvolutionStageCard stage={root} currentPokemonId={currentPokemonId} />
 
       <div className="flex flex-col items-center flex-shrink-0">

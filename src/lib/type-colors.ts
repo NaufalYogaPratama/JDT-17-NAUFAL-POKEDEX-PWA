@@ -21,21 +21,9 @@ export const TYPE_COLORS: Record<string, string> = {
   mythical: '#C084FC',
 }
 
-export const TYPE_NEEDS_LIGHT_TEXT = new Set<string>([
-  'fighting',
-  'ghost',
-  'dragon',
-  'dark',
-  'poison',
-  'rock',
-  'ground',
-  'mythical',
-])
+export const TYPE_NEEDS_LIGHT_TEXT = new Set<string>([])
 
 export function getTypeTextColor(type: string): string {
   const normalizedType = type.toLowerCase()
-  if (TYPE_NEEDS_LIGHT_TEXT.has(normalizedType)) {
-    return '#FFFFFF'
-  }
   return TYPE_COLORS[normalizedType] || '#000000'
 }

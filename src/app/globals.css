@@ -201,6 +201,8 @@
     font-family: var(--font-body);
     background-color: var(--color-background);
     color: var(--color-text-primary);
+    background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
+    background-size: 24px 24px;
   }
   html {
     @apply font-sans;

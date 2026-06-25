@@ -29,9 +29,15 @@ export default function ArtworkContainer({
 
   return (
     <div
-      className="w-full h-60 relative flex items-center justify-center overflow-hidden"
+      className="w-full h-60 md:h-72 lg:h-80 lg:rounded-3xl relative flex items-center justify-center overflow-hidden transition-all duration-300"
       style={{ backgroundColor: bgOpacityHex }}
     >
+      <img
+        src="/icons/pokeball.svg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-contain opacity-[0.06] pointer-events-none select-none scale-110"
+      />
       {/* Back Button */}
       <button
         type="button"

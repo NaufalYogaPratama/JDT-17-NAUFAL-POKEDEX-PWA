@@ -13,6 +13,7 @@ import { usePokemonStore } from '@/store/pokemon-store'
 import { usePokemonList } from '@/hooks/usePokemonList'
 import { usePokemonByType } from '@/hooks/usePokemonByType'
 import { fetchPokemonDetail } from '@/lib/pokeapi'
+import { cn } from '@/lib/utils'
 
 function LoadingSpinner() {
   return (
@@ -122,12 +123,14 @@ export default function Home() {
 
   return (
     <PageWrapper>
-      {/* Search and Filters */}
-      <div className="mt-2 mb-2">
-        <SearchBar />
-      </div>
-      <div className="mb-3">
-        <TypeFilterChips />
+      <div className="md:max-w-2xl lg:max-w-3xl">
+        {/* Search and Filters */}
+        <div className="mt-2 mb-2">
+          <SearchBar />
+        </div>
+        <div className="mb-3">
+          <TypeFilterChips />
+        </div>
       </div>
 
       {/* Results Count */}
@@ -136,7 +139,14 @@ export default function Home() {
       </p>
 
       {/* Grid Content */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className={cn(
+        "grid gap-3",
+        "grid-cols-2",
+        "sm:grid-cols-3",
+        "md:grid-cols-4",
+        "lg:grid-cols-5",
+        "xl:grid-cols-6"
+      )}>
         {isListLoading ? (
           Array.from({ length: 6 }).map((_, i) => (
             <SkeletonCard key={`initial-skeleton-${i}`} />

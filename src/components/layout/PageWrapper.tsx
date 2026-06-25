@@ -1,3 +1,5 @@
+import { cn } from '@/lib/utils'
+
 export interface PageWrapperProps {
   children: React.ReactNode
   className?: string
@@ -5,8 +7,16 @@ export interface PageWrapperProps {
 
 export default function PageWrapper({ children, className = '' }: PageWrapperProps) {
   return (
-    <main className={`pt-14 pb-20 px-4 min-h-screen bg-[#F8FAFC] ${className}`}>
-      {children}
-    </main>
+    <div className="min-h-screen bg-[#F8FAFC] lg:pl-64">
+      <main className={cn(
+        "mx-auto w-full max-w-screen-xl",
+        "pt-14 pb-20 px-4",
+        "md:px-8",
+        "lg:px-12 lg:pb-8",
+        className
+      )}>
+        {children}
+      </main>
+    </div>
   )
 }

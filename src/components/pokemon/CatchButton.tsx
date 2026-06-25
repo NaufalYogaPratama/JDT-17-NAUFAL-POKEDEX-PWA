@@ -12,6 +12,7 @@ export interface CatchButtonProps {
   pokemonName: string
   types: string[]
   spriteUrl: string
+  fixed?: boolean
 }
 
 const PokeBallIcon = ({ className }: { className?: string }) => (
@@ -35,6 +36,7 @@ export default function CatchButton({
   pokemonName,
   types,
   spriteUrl,
+  fixed = false,
 }: CatchButtonProps) {
   const [isThrowing, setIsThrowing] = useState(false)
   const [showResult, setShowResult] = useState(false)
@@ -87,8 +89,8 @@ export default function CatchButton({
 
   return (
     <>
-      <div className="fixed bottom-16 left-0 right-0 px-4 pb-4 pt-6 bg-gradient-to-t from-slate-50 via-slate-50/90 to-transparent z-30">
-        <div className="max-w-md mx-auto">
+      <div className={fixed ? "fixed bottom-16 left-0 right-0 px-4 pb-4 pt-6 bg-gradient-to-t from-slate-50 via-slate-50/90 to-transparent z-30" : "w-full"}>
+        <div className={fixed ? "max-w-md mx-auto" : "w-full"}>
           <button
             type="button"
             onClick={triggerThrow}
