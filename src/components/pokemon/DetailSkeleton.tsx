@@ -23,7 +23,7 @@ export default function DetailSkeleton() {
           <Skeleton className="h-8 w-24 rounded-full" />
         </div>
 
-        <hr className="border-slate-100 my-5" />
+        <hr className="border-slate-100 dark:border-slate-700 my-5 transition-colors duration-200" />
 
         {/* Stats Section */}
         <div className="space-y-4">

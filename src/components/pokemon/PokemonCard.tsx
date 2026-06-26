@@ -29,7 +29,7 @@ export default function PokemonCard({
     <Link
       href={`/pokemon/${id}`}
       aria-label={`${name}, #${String(id).padStart(4, '0')}, ${types.join(', ')} type`}
-      className="block rounded-[14px] border border-slate-200 shadow-sm bg-white overflow-hidden cursor-pointer hover:-translate-y-0.5 hover:shadow-md transition-all duration-150"
+      className="block rounded-[14px] border border-slate-200 dark:border-slate-700 shadow-sm bg-white dark:bg-slate-800 overflow-hidden cursor-pointer hover:-translate-y-0.5 hover:shadow-md transition-all duration-150"
     >
       <article>
         {/* Art Container */}
@@ -71,7 +71,7 @@ export default function PokemonCard({
           </div>
 
           {/* Row 2: Name */}
-          <h2 className="font-display text-sm font-bold text-slate-900 truncate">
+          <h2 className="font-display text-sm font-bold text-slate-900 dark:text-slate-100 truncate transition-colors duration-200">
             {capitalizedName}
           </h2>
 

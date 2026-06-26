@@ -2,7 +2,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 
 export default function SkeletonCard() {
   return (
-    <div className="rounded-[14px] border border-slate-100 overflow-hidden bg-white">
+    <div className="rounded-[14px] border border-slate-100 dark:border-slate-700 overflow-hidden bg-white dark:bg-slate-800 transition-colors duration-200">
       {/* Top area skeleton */}
       <Skeleton className="h-28 w-full rounded-none" />
       {/* Bottom area skeleton */}

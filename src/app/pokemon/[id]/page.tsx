@@ -48,7 +48,7 @@ export default function PokemonDetailPage() {
     ''
 
   return (
-    <div className="w-full min-h-screen bg-white pb-32 relative pt-14 lg:bg-[#F8FAFC] lg:pl-64">
+    <div className="w-full min-h-screen bg-white dark:bg-slate-900 pb-32 relative pt-14 lg:bg-[#F8FAFC] lg:dark:bg-slate-900 lg:pl-64 transition-colors duration-200">
       <div className="lg:max-w-screen-xl lg:mx-auto lg:px-12 lg:flex lg:flex-row lg:gap-12 lg:items-start lg:pt-8 lg:pb-16">
         
         {/* Left column — artwork + identity */}
@@ -63,7 +63,7 @@ export default function PokemonDetailPage() {
           {/* Name, ID, types — move these inside left col on desktop */}
           <div className="hidden lg:flex flex-col px-0 mt-6">
             <div className="flex items-baseline gap-2">
-              <h1 className="font-display text-4xl font-extrabold text-slate-900 leading-tight">
+              <h1 className="font-display text-4xl font-extrabold text-slate-900 dark:text-slate-100 leading-tight transition-colors duration-200">
                 {capitalize(data.name)}
               </h1>
               <PokemonId id={data.id} />
@@ -86,13 +86,13 @@ export default function PokemonDetailPage() {
         </div>
 
         {/* Right column — stats, species, evolution */}
-        <div className="flex-1 min-w-0 px-4 lg:px-0 lg:bg-white lg:rounded-3xl lg:p-8 lg:shadow-sm lg:border lg:border-slate-200 lg:pl-8 lg:pr-8">
+        <div className="flex-1 min-w-0 px-4 lg:px-0 lg:bg-white lg:dark:bg-slate-800 lg:rounded-3xl lg:p-8 lg:shadow-sm lg:border lg:border-slate-200 lg:dark:border-slate-700 lg:pl-8 lg:pr-8 transition-colors duration-200">
           
           {/* Name, ID, types — show on mobile only */}
           <div className="lg:hidden mt-4 space-y-5">
             <div>
               <div className="flex items-baseline gap-2">
-                <h1 className="font-display text-3xl font-extrabold text-slate-900 leading-tight">
+                <h1 className="font-display text-3xl font-extrabold text-slate-900 dark:text-slate-100 leading-tight transition-colors duration-200">
                   {capitalize(data.name)}
                 </h1>
                 <PokemonId id={data.id} />
@@ -109,17 +109,17 @@ export default function PokemonDetailPage() {
 
           {/* Height & Weight Pills */}
           <div className="flex gap-4 mt-5 lg:mt-0">
-            <div className="bg-slate-50 rounded-full px-4 py-1.5 text-xs font-semibold text-slate-600 border border-slate-100 flex items-center gap-1.5 shadow-xs">
-              <span className="text-slate-400 font-medium">Height</span>
+            <div className="bg-slate-50 dark:bg-slate-800/50 rounded-full px-4 py-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-700 flex items-center gap-1.5 shadow-xs transition-colors duration-200">
+              <span className="text-slate-400 dark:text-slate-500 font-medium transition-colors duration-200">Height</span>
               <span className="font-mono">{formatHeight(data.height)}</span>
             </div>
-            <div className="bg-slate-50 rounded-full px-4 py-1.5 text-xs font-semibold text-slate-600 border border-slate-100 flex items-center gap-1.5 shadow-xs">
-              <span className="text-slate-400 font-medium">Weight</span>
+            <div className="bg-slate-50 dark:bg-slate-800/50 rounded-full px-4 py-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-700 flex items-center gap-1.5 shadow-xs transition-colors duration-200">
+              <span className="text-slate-400 dark:text-slate-500 font-medium transition-colors duration-200">Weight</span>
               <span className="font-mono">{formatWeight(data.weight)}</span>
             </div>
           </div>
 
-          <hr className="border-slate-100 my-5 lg:my-6" />
+          <hr className="border-slate-100 dark:border-slate-700 my-5 lg:my-6 transition-colors duration-200" />
 
           {/* Section 3 - Base Stats */}
           <div className="space-y-3">
@@ -133,7 +133,7 @@ export default function PokemonDetailPage() {
                 />
               ))}
               {/* Total Row */}
-              <div className="pt-2 border-t border-slate-100 mt-2">
+              <div className="pt-2 border-t border-slate-100 dark:border-slate-700 mt-2 transition-colors duration-200">
                 <StatBar label="Total" value={totalStats} max={600} />
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function PokemonDetailPage() {
             ) : speciesData ? (
               <SpeciesCard species={speciesData} />
             ) : (
-              <div className="bg-slate-50 border border-slate-100 rounded-[14px] p-4 text-slate-400 text-sm font-medium">
+              <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-[14px] p-4 text-slate-400 dark:text-slate-500 text-sm font-medium transition-colors duration-200">
                 Species data not available.
               </div>
             )}
@@ -159,7 +159,7 @@ export default function PokemonDetailPage() {
             {evolutionChainUrl ? (
               <EvolutionChain chainUrl={evolutionChainUrl} currentPokemonId={data.id} />
             ) : !isSpeciesLoading ? (
-              <div className="bg-slate-50 border border-slate-100 rounded-[14px] p-4 text-slate-400 text-sm font-medium">
+              <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-[14px] p-4 text-slate-400 dark:text-slate-500 text-sm font-medium transition-colors duration-200">
                 No evolution data available.
               </div>
             ) : (

@@ -23,7 +23,7 @@ export default function TypeFilterChips() {
         className={`h-8 px-4 shrink-0 rounded-full text-xs font-semibold cursor-pointer transition-all duration-150 flex items-center justify-center ${
           selectedType === null
             ? 'bg-primary text-white shadow-sm'
-            : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+            : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700'
         }`}
       >
         All
@@ -45,11 +45,11 @@ export default function TypeFilterChips() {
             type="button"
             onClick={() => handleChipClick(type)}
             aria-pressed={isActive}
-            className="h-8 px-3 shrink-0 rounded-full text-xs font-semibold cursor-pointer border transition-all duration-150 flex items-center justify-center"
+            className="h-8 px-3 shrink-0 rounded-full text-xs font-semibold cursor-pointer border bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 transition-all duration-150 flex items-center justify-center"
             style={{
-              backgroundColor: isActive ? bgHex : '#FFFFFF',
-              borderColor: isActive ? typeColor : '#E2E8F0',
-              color: isActive ? typeColor : '#64748B',
+              backgroundColor: isActive ? bgHex : undefined,
+              borderColor: isActive ? typeColor : undefined,
+              color: isActive ? typeColor : undefined,
             }}
           >
             {capitalizedType}

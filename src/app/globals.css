@@ -160,37 +160,55 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Surfaces */
+  --color-background:     #0F172A;   /* Slate 900 — deep navy, not pure black */
+  --color-surface:        #1E293B;   /* Slate 800 — card surface */
+  --color-surface-raised: #334155;   /* Slate 700 — nested surface, input bg */
+
+  /* Borders */
+  --color-border:         #334155;   /* Slate 700 */
+  --color-border-strong:  #475569;   /* Slate 600 */
+
+  /* Text */
+  --color-text-primary:   #F1F5F9;   /* Slate 100 */
+  --color-text-secondary: #94A3B8;   /* Slate 400 */
+  --color-text-muted:     #64748B;   /* Slate 500 */
+  --color-text-inverse:   #0F172A;   /* Dark bg — for text on light surfaces */
+
+  /* Semantic — slightly adjusted for dark bg */
+  --color-success:         #34D399;  /* Emerald 400 — brighter on dark */
+  --color-success-surface: #064E3B;  /* Emerald 950 */
+  --color-warning:         #FCD34D;  /* Amber 300 */
+  --color-warning-surface: #451A03;  /* Amber 950 */
+  --color-error:           #F87171;  /* Red 400 */
+  --color-error-surface:   #450A0A;  /* Red 950 */
+  --color-muted:           #1E293B;  /* Slate 800 */
+
+  /* Primary stays the same — red works on dark */
+  --color-primary:         #DC2626;
+  --color-primary-dark:    #B91C1C;
+  --color-primary-light:   #450A0A;  /* Adjusted for dark bg */
+
+  /* shadcn/ui */
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 217.2 32.6% 17.5%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 0 72.2% 50.6%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 0 72.2% 50.6%;
 }
 
 @layer base {
@@ -203,6 +221,12 @@
     color: var(--color-text-primary);
     background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
     background-size: 24px 24px;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+  .dark body {
+    background-image: radial-gradient(circle, #1e293b 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-color: #0F172A;
   }
   html {
     @apply font-sans;

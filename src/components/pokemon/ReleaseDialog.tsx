@@ -33,12 +33,12 @@ export default function ReleaseDialog({ pokemon, isOpen, onClose }: ReleaseDialo
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-[340px] rounded-[20px] p-6 gap-6 bg-white border border-slate-200 shadow-lg mx-auto focus-visible:outline-none">
+      <DialogContent className="max-w-[340px] rounded-[20px] p-6 gap-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-lg mx-auto focus-visible:outline-none transition-colors duration-200">
         <DialogHeader className="text-center space-y-2">
-          <DialogTitle className="font-display text-lg font-bold text-slate-900">
+          <DialogTitle className="font-display text-lg font-bold text-slate-900 dark:text-slate-100 transition-colors duration-200">
             Release {pokemon.nickname}?
           </DialogTitle>
-          <DialogDescription className="text-sm text-slate-500 leading-normal">
+          <DialogDescription className="text-sm text-slate-500 dark:text-slate-400 leading-normal transition-colors duration-200">
             This will remove {capitalize(pokemon.name)} from your Pokédex. This can't be undone.
           </DialogDescription>
         </DialogHeader>
@@ -53,7 +53,7 @@ export default function ReleaseDialog({ pokemon, isOpen, onClose }: ReleaseDialo
           <Button
             variant="outline"
             onClick={onClose}
-            className="w-full h-11 border border-slate-200 text-slate-600 hover:bg-slate-50 rounded-full font-semibold text-sm transition-colors"
+            className="w-full h-11 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full font-semibold text-sm transition-colors duration-200"
           >
             Cancel
           </Button>

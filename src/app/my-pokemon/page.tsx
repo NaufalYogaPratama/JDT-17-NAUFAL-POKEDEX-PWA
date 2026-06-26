@@ -62,10 +62,10 @@ export default function MyPokemonPage() {
       {/* Header Row */}
       <div className="flex items-center justify-between mb-5 mt-6">
         <div>
-          <h1 className="font-display text-xl lg:text-2xl font-extrabold text-slate-900">My Pokédex</h1>
-          <p className="hidden lg:block text-sm text-slate-400 mt-0.5">Your captured collection</p>
+          <h1 className="font-display text-xl lg:text-2xl font-extrabold text-slate-900 dark:text-slate-100 transition-colors duration-200">My Pokédex</h1>
+          <p className="hidden lg:block text-sm text-slate-400 dark:text-slate-500 mt-0.5 transition-colors duration-200">Your captured collection</p>
         </div>
-        <Badge variant="secondary" className="bg-slate-200/60 hover:bg-slate-200/60 text-slate-700 font-semibold px-2.5 py-0.5 lg:px-3 lg:py-1 rounded-full text-xs lg:text-sm border-none">
+        <Badge variant="secondary" className="bg-slate-200/60 dark:bg-slate-800 hover:bg-slate-200/60 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold px-2.5 py-0.5 lg:px-3 lg:py-1 rounded-full text-xs lg:text-sm border-none transition-colors duration-200">
           {capturedPokemon.length} Pokémon
         </Badge>
       </div>
@@ -74,7 +74,7 @@ export default function MyPokemonPage() {
         <>
           {/* Sort Controls */}
           <div className="flex items-center gap-2 mb-6">
-            <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mr-1">Sort:</span>
+            <span className="text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mr-1 transition-colors duration-200">Sort:</span>
             {(['recent', 'name', 'type'] as SortOption[]).map((option) => (
               <button
                 key={option}
@@ -82,7 +82,7 @@ export default function MyPokemonPage() {
                 className={`px-3.5 py-1 text-xs font-semibold rounded-full capitalize transition-all ${
                   sortBy === option
                     ? 'bg-primary text-white shadow-sm'
-                    : 'bg-white border border-slate-200 text-slate-500 hover:bg-slate-50'
+                    : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700'
                 }`}
               >
                 {option}
