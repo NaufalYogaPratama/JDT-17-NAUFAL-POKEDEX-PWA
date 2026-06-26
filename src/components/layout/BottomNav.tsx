@@ -25,7 +25,14 @@ export default function BottomNav() {
     <>
 
       {/* Mobile Bottom Nav */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 w-full h-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 z-20 flex items-center justify-around transition-colors duration-200">
+      <nav className="
+        lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-52 h-15
+        bg-white dark:bg-slate-900
+        border border-slate-200 dark:border-slate-700
+        rounded-4xl shadow-lg dark:shadow-slate-900/50
+        z-20 flex items-center justify-around
+        transition-colors duration-200 pl-4 pr-4
+      ">
         {tabs.map((tab) => {
           const Icon = tab.icon
           const isActive =
