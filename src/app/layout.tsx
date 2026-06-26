@@ -6,6 +6,7 @@ import AppHeader from '@/components/layout/AppHeader'
 import BottomNav from '@/components/layout/BottomNav'
 import StorageInitializer from '@/components/providers/StorageInitializer'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
+import { FloatingSidebar } from '@/components/layout/FloatingSidebar'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -44,6 +45,7 @@ export default function RootLayout({
         <ThemeProvider>
           <StorageInitializer />
           <AppHeader />
+          <FloatingSidebar />
           <Providers>{children}</Providers>
           <BottomNav />
         </ThemeProvider>
