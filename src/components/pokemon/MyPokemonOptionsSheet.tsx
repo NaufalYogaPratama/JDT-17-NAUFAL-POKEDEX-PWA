@@ -81,7 +81,7 @@ export default function MyPokemonOptionsSheet({
           <button
             type="button"
             onClick={onRelease}
-            className="w-full h-12 border border-red-200 rounded-[10px] text-red-600 font-medium text-sm flex items-center justify-center gap-2 bg-white hover:bg-red-50/50 active:scale-[0.99] transition-transform"
+            className="w-full h-12 border border-red-200 dark:border-red-900/50 rounded-[10px] text-red-600 dark:text-red-500 font-medium text-sm flex items-center justify-center gap-2 bg-white dark:bg-slate-900 hover:bg-red-50/50 dark:hover:bg-red-950/30 active:scale-[0.99] transition-all duration-200"
           >
             <Trash2 size={16} />
             Release

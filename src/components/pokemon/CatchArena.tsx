@@ -330,13 +330,25 @@ export function CatchArena({ isOpen, pokemon, onClose, onSave }: CatchArenaProps
 
               <button
                 onClick={startCatch}
-                className="w-full h-13 bg-primary text-white rounded-full
+                className="w-full h-12 bg-primary text-white rounded-full
                            font-semibold text-sm shadow-lg shadow-primary/40
                            flex items-center justify-center gap-2.5
                            hover:bg-primary-dark active:scale-95 transition-all"
               >
-                <img src="/icons/pokeball.svg" alt="" aria-hidden="true"
-                     className="w-5 h-5 brightness-0 invert" />
+                <div 
+                  className="w-5 h-5 bg-white" 
+                  style={{ 
+                    WebkitMaskImage: 'url(/icons/pokeball.svg)',
+                    WebkitMaskSize: 'contain',
+                    WebkitMaskRepeat: 'no-repeat',
+                    WebkitMaskPosition: 'center',
+                    maskImage: 'url(/icons/pokeball.svg)',
+                    maskSize: 'contain',
+                    maskRepeat: 'no-repeat',
+                    maskPosition: 'center'
+                  }} 
+                  aria-hidden="true" 
+                />
                 Throw Poké Ball!
               </button>
 
