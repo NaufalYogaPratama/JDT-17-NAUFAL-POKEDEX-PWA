@@ -35,7 +35,7 @@ export default function CatchButton({ pokemonId, pokemonName, types }: CatchButt
     <>
       {/* Mobile: fixed bottom */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 px-4 pb-6 pt-4
-                      bg-gradient-to-t from-[#F8FAFC] dark:from-slate-900 via-[#F8FAFC]/90 to-transparent z-30">
+                      bg-gradient-to-t from-[#F8FAFC] dark:from-slate-900 via-[#F8FAFC]/90 dark:via-slate-900/90 to-transparent z-30">
         <button
           onClick={() => setArenaOpen(true)}
           disabled={alreadyCaught}

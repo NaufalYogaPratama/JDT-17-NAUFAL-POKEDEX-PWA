@@ -22,15 +22,16 @@ export default function ArtworkContainer({
   const router = useRouter()
   const firstType = types[0]?.toLowerCase() || 'normal'
   const typeColor = TYPE_COLORS[firstType] || '#9CA3AF'
-  const bgOpacityHex = typeColor + '1f' // 12% opacity in hex is '1f'
-
-
+  const bgOpacityHex = typeColor + '18'
 
   return (
     <div
-      className="w-full h-60 md:h-72 lg:h-80 lg:rounded-3xl relative flex items-center justify-center overflow-hidden transition-all duration-300"
-      style={{ backgroundColor: bgOpacityHex }}
+      className="relative w-full min-h-[200px] max-h-[340px] flex items-center justify-center overflow-hidden py-6 lg:rounded-3xl transition-all duration-300"
     >
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: bgOpacityHex }}
+      />
       <img
         src="/icons/pokeball.svg"
         alt=""
@@ -53,13 +54,12 @@ export default function ArtworkContainer({
       </div>
 
       {/* Official Artwork */}
-      <div className="relative w-[200px] h-[200px] flex items-center justify-center">
+      <div className="relative w-full h-full flex items-center justify-center">
         <PokemonSprite
           id={id}
           name={name}
-          size={200}
+          variant="fluid"
           priority={true}
-          className="drop-shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
         />
       </div>
     </div>
