@@ -52,7 +52,7 @@ export default function PokemonDetailPage() {
       <div className="lg:max-w-screen-xl lg:mx-auto lg:px-12 lg:flex lg:flex-row lg:gap-12 lg:items-start lg:pt-8 lg:pb-16">
         
         {/* Left column — artwork + identity */}
-        <div className="lg:w-[400px] lg:shrink-0 lg:sticky lg:top-24 flex flex-col">
+        <div className="lg:w-[400px] lg:shrink-2 lg:sticky lg:top-24 flex flex-col">
           <ArtworkContainer
             name={data.name}
             id={data.id}
