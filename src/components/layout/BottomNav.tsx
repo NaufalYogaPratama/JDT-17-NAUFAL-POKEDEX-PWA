@@ -23,42 +23,16 @@ export default function BottomNav() {
 
   return (
     <>
-      {/* Desktop Sidebar Nav */}
-      <nav className="hidden lg:flex fixed left-0 top-14 h-[calc(100vh-56px)] w-64 border-r border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 flex-col px-3 py-4 gap-1 z-10 transition-colors duration-200">
-        {tabs.map((tab) => {
-          const Icon = tab.icon
-          const isActive = tab.href === '/' ? pathname === '/' : pathname.startsWith(tab.href)
-          
-          return (
-            <Link
-              key={tab.href}
-              href={tab.href}
-              className={cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-[10px] text-sm font-medium transition-colors duration-200",
-                isActive 
-                  ? "bg-red-50 dark:bg-red-950/30 text-primary" 
-                  : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800"
-              )}
-            >
-              <Icon size={18} />
-              {tab.label}
-            </Link>
-          )
-        })}
-        
-        {/* Pokéball decoration at bottom of sidebar */}
-        <div className="mt-auto flex justify-center pb-4">
-          <img 
-            src="/icons/pokeball.svg" 
-            alt="" 
-            aria-hidden="true"
-            className="w-16 h-16 opacity-10 pointer-events-none select-none"
-          />
-        </div>
-      </nav>
 
       {/* Mobile Bottom Nav */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 w-full h-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 z-20 flex items-center justify-around transition-colors duration-200">
+      <nav className="
+        lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-52 h-15
+        bg-white dark:bg-slate-900
+        border border-slate-200 dark:border-slate-700
+        rounded-4xl shadow-lg dark:shadow-slate-900/50
+        z-20 flex items-center justify-around
+        transition-colors duration-200 pl-4 pr-4
+      ">
         {tabs.map((tab) => {
           const Icon = tab.icon
           const isActive =

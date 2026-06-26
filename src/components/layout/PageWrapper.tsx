@@ -7,15 +7,17 @@ export interface PageWrapperProps {
 
 export default function PageWrapper({ children, className = '' }: PageWrapperProps) {
   return (
-    <div className="min-h-screen bg-[#F8FAFC] dark:bg-slate-900 lg:pl-64 transition-colors duration-200">
+    <div className="min-h-screen bg-[#F8FAFC] dark:bg-slate-900 transition-colors duration-200">
       <main className={cn(
-        "mx-auto w-full max-w-screen-xl",
-        "pt-14 pb-20 px-4",
+        "mx-auto w-full",
+        "pt-20 pb-24 px-4",
         "md:px-8",
-        "lg:px-12 lg:pb-8",
+        "lg:pl-24 lg:pr-8 lg:pb-8 lg:pt-20",
         className
       )}>
-        {children}
+        <div className="max-w-screen-xl mx-auto">
+          {children}
+        </div>
       </main>
     </div>
   )

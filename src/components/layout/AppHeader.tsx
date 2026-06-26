@@ -8,8 +8,18 @@ export default function AppHeader() {
   const caughtCount = usePokemonStore((state) => state.capturedPokemon.length)
 
   return (
-    <header className="fixed top-0 left-0 right-0 w-full h-14 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 shadow-xs z-20 transition-colors duration-200">
-      <div className="max-w-screen-xl mx-auto px-4 md:px-8 h-14 flex items-center justify-between relative overflow-hidden">
+    <header className="
+      fixed top-0 left-0 right-0 h-14 z-20
+      bg-white dark:bg-slate-900
+      border-b border-slate-200 dark:border-slate-700
+      shadow-xs transition-colors duration-200
+    ">
+      <div className="
+        h-full flex items-center justify-between
+        px-4 md:px-8
+        relative overflow-hidden
+        max-w-none mx-auto max-w-screen-xl
+      ">
         <img
           src="/icons/pokeball.svg"
           alt=""
@@ -23,7 +33,9 @@ export default function AppHeader() {
           <Badge variant="secondary" className="font-mono font-semibold text-slate-700 dark:text-slate-200">
             {caughtCount} caught
           </Badge>
-          <ThemeToggle />
+          <div className="lg:hidden">
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </header>
