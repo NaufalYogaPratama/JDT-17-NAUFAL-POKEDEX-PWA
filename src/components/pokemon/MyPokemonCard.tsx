@@ -22,7 +22,7 @@ export default function MyPokemonCard({ pokemon, onOptions }: MyPokemonCardProps
     <Link
       href={`/pokemon/${pokemon.id}`}
       aria-label={`${pokemon.nickname}, species ${pokemon.name}, #${String(pokemon.id).padStart(4, '0')}`}
-      className="block rounded-[14px] border border-slate-200 shadow-sm bg-white overflow-hidden cursor-pointer hover:-translate-y-0.5 hover:shadow-md transition-all duration-150"
+      className="block rounded-[14px] border border-slate-200 dark:border-slate-700 shadow-sm bg-white dark:bg-slate-800 overflow-hidden cursor-pointer hover:-translate-y-0.5 hover:shadow-md transition-all duration-150"
     >
       <article>
         {/* Art Container */}
@@ -47,7 +47,7 @@ export default function MyPokemonCard({ pokemon, onOptions }: MyPokemonCardProps
         <div className="p-3 flex flex-col gap-1.5">
           {/* Row 1: Nickname and Options Menu */}
           <div className="flex items-center justify-between gap-2">
-            <h2 className="font-display text-sm font-bold text-slate-900 truncate">
+            <h2 className="font-display text-sm font-bold text-slate-900 dark:text-slate-100 truncate transition-colors duration-200">
               {pokemon.nickname}
             </h2>
             <button
@@ -57,7 +57,7 @@ export default function MyPokemonCard({ pokemon, onOptions }: MyPokemonCardProps
                 e.preventDefault()
                 onOptions(pokemon)
               }}
-              className="p-1 hover:bg-slate-100 rounded-full text-slate-400 hover:text-slate-600 transition-colors"
+              className="p-1 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors duration-200"
               aria-label="Options"
             >
               <MoreHorizontal size={14} />
@@ -65,7 +65,7 @@ export default function MyPokemonCard({ pokemon, onOptions }: MyPokemonCardProps
           </div>
 
           {/* Row 2: Species Name */}
-          <div className="text-[11px] text-slate-400 font-medium leading-none">
+          <div className="text-[11px] text-slate-400 dark:text-slate-500 font-medium leading-none transition-colors duration-200">
             {capitalize(pokemon.name)}
           </div>
 
@@ -77,7 +77,7 @@ export default function MyPokemonCard({ pokemon, onOptions }: MyPokemonCardProps
           </div>
 
           {/* Row 4: Captured Time */}
-          <div className="text-[10px] text-slate-400 mt-0.5">
+          <div className="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5 transition-colors duration-200">
             Caught {timeAgo(pokemon.capturedAt)}
           </div>
         </div>

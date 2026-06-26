@@ -7,7 +7,7 @@ export interface PageWrapperProps {
 
 export default function PageWrapper({ children, className = '' }: PageWrapperProps) {
   return (
-    <div className="min-h-screen bg-[#F8FAFC] lg:pl-64">
+    <div className="min-h-screen bg-[#F8FAFC] dark:bg-slate-900 lg:pl-64 transition-colors duration-200">
       <main className={cn(
         "mx-auto w-full max-w-screen-xl",
         "pt-14 pb-20 px-4",

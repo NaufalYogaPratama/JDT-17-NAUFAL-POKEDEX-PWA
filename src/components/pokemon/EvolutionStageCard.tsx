@@ -17,8 +17,8 @@ export default function EvolutionStageCard({
   return (
     <Link href={`/pokemon/${stage.pokemonId}`} className="block flex-shrink-0">
       <div
-        className={`w-24 bg-slate-50 rounded-[14px] p-2 flex flex-col items-center justify-center transition-all ${
-          isCurrent ? 'ring-2 ring-primary/40 shadow-sm' : 'border border-slate-100 hover:border-slate-200'
+        className={`w-24 bg-slate-50 dark:bg-slate-800/50 rounded-[14px] p-2 flex flex-col items-center justify-center transition-all duration-200 ${
+          isCurrent ? 'ring-2 ring-primary/40 shadow-sm' : 'border border-slate-100 dark:border-slate-700 hover:border-slate-200 dark:hover:border-slate-600'
         }`}
       >
         <div className="relative w-16 h-16 drop-shadow-sm">
@@ -31,7 +31,7 @@ export default function EvolutionStageCard({
           />
         </div>
         <div className="mt-1 text-center w-full">
-          <p className="text-[11px] font-bold text-slate-700 truncate">
+          <p className="text-[11px] font-bold text-slate-700 dark:text-slate-200 truncate transition-colors duration-200">
             {capitalize(stage.speciesName)}
           </p>
           {isCurrent && (

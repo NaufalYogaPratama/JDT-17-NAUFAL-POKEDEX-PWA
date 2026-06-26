@@ -28,10 +28,10 @@ export default function StatBar({ label, value, max = 255 }: StatBarProps) {
 
   return (
     <div className="flex items-center gap-3 w-full">
-      <span className="w-20 shrink-0 uppercase text-[11px] font-medium tracking-wider text-slate-500">
+      <span className="w-20 shrink-0 uppercase text-[11px] font-medium tracking-wider text-slate-500 dark:text-slate-400 transition-colors duration-200">
         {label}
       </span>
-      <span className="w-8 shrink-0 text-right font-mono text-[13px] text-slate-700">
+      <span className="w-8 shrink-0 text-right font-mono text-[13px] text-slate-700 dark:text-slate-300 transition-colors duration-200">
         {value}
       </span>
       <div
@@ -40,7 +40,7 @@ export default function StatBar({ label, value, max = 255 }: StatBarProps) {
         aria-valuemin={0}
         aria-valuemax={max}
         aria-label={`${label}: ${value}`}
-        className="flex-1 h-1.5 bg-slate-100 rounded-full overflow-hidden"
+        className="flex-1 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden transition-colors duration-200"
       >
         <div
           className={`h-full rounded-full ${colorClass} ${

@@ -89,7 +89,7 @@ export default function CatchButton({
 
   return (
     <>
-      <div className={fixed ? "fixed bottom-16 left-0 right-0 px-4 pb-4 pt-6 bg-gradient-to-t from-slate-50 via-slate-50/90 to-transparent z-30" : "w-full"}>
+      <div className={fixed ? "fixed bottom-16 left-0 right-0 px-4 pb-4 pt-6 bg-gradient-to-t from-slate-50 dark:from-slate-900 via-slate-50/90 dark:via-slate-900/90 to-transparent z-30 transition-colors duration-200" : "w-full"}>
         <div className={fixed ? "max-w-md mx-auto" : "w-full"}>
           <button
             type="button"
@@ -97,9 +97,9 @@ export default function CatchButton({
             disabled={isAlreadyCaptured || isThrowing}
             className={`w-full h-12 flex items-center justify-center rounded-full font-semibold text-sm transition-all duration-150 ${
               isAlreadyCaptured
-                ? 'bg-slate-200 text-slate-400 cursor-not-allowed shadow-none'
+                ? 'bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'
                 : isThrowing
-                ? 'bg-slate-800 text-white shadow-none cursor-wait'
+                ? 'bg-slate-800 dark:bg-slate-700 text-white shadow-none cursor-wait'
                 : 'bg-primary hover:bg-primary-dark text-white shadow-lg shadow-red-500/30 active:scale-[0.98]'
             }`}
           >

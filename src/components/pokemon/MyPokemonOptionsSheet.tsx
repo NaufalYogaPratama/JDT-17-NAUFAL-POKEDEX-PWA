@@ -32,7 +32,7 @@ export default function MyPokemonOptionsSheet({
     <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <SheetContent
         side="bottom"
-        className="rounded-t-[20px] px-6 pb-8 pt-4 max-w-md mx-auto w-full border-t border-slate-200 shadow-md bg-white focus-visible:outline-none"
+        className="rounded-t-[20px] px-6 pb-8 pt-4 max-w-md mx-auto w-full border-t border-slate-200 dark:border-slate-700 shadow-md bg-white dark:bg-slate-900 focus-visible:outline-none transition-colors duration-200"
       >
         <SheetHeader className="sr-only">
           <SheetTitle>Options for {pokemon.nickname}</SheetTitle>
@@ -40,7 +40,7 @@ export default function MyPokemonOptionsSheet({
         </SheetHeader>
 
         {/* Small drag handle indicator */}
-        <div className="w-10 h-1 bg-slate-200 rounded-full mx-auto mb-4" />
+        <div className="w-10 h-1 bg-slate-200 dark:bg-slate-700 rounded-full mx-auto mb-4 transition-colors duration-200" />
 
         {/* Pokémon Details Preview */}
         <div className="flex flex-col items-center text-center mt-2 mb-6">
@@ -60,10 +60,10 @@ export default function MyPokemonOptionsSheet({
               <div className="w-[64px] h-[64px]" />
             )}
           </div>
-          <h2 className="font-display text-lg font-bold text-slate-900">
+          <h2 className="font-display text-lg font-bold text-slate-900 dark:text-slate-100 transition-colors duration-200">
             {pokemon.nickname}
           </h2>
-          <p className="text-sm text-slate-400 mt-0.5">
+          <p className="text-sm text-slate-400 dark:text-slate-500 mt-0.5 transition-colors duration-200">
             {capitalize(pokemon.name)}
           </p>
         </div>
@@ -73,7 +73,7 @@ export default function MyPokemonOptionsSheet({
           <button
             type="button"
             onClick={onRename}
-            className="w-full h-12 border border-slate-200 rounded-[10px] text-slate-700 font-medium text-sm flex items-center justify-center gap-2 bg-white hover:bg-slate-50 active:scale-[0.99] transition-transform"
+            className="w-full h-12 border border-slate-200 dark:border-slate-700 rounded-[10px] text-slate-700 dark:text-slate-200 font-medium text-sm flex items-center justify-center gap-2 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 active:scale-[0.99] transition-transform"
           >
             <Pencil size={16} />
             Rename

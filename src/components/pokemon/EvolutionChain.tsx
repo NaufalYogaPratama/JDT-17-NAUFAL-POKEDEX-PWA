@@ -49,8 +49,8 @@ export default function EvolutionChain({
           <div key={stage.pokemonId} className="flex items-center gap-2">
             {i > 0 && (
               <div className="flex flex-col items-center flex-shrink-0">
-                <ChevronRight size={14} className="text-slate-300" />
-                <span className="text-[9px] text-slate-400 mt-0.5 whitespace-nowrap">
+                <ChevronRight size={14} className="text-slate-300 dark:text-slate-600 transition-colors duration-200" />
+                <span className="text-[9px] text-slate-400 dark:text-slate-500 mt-0.5 whitespace-nowrap transition-colors duration-200">
                   {getEvolutionTriggerLabel(stage.evolutionDetails)}
                 </span>
               </div>
@@ -69,14 +69,14 @@ export default function EvolutionChain({
       <EvolutionStageCard stage={root} currentPokemonId={currentPokemonId} />
 
       <div className="flex flex-col items-center flex-shrink-0">
-        <ChevronRight size={14} className="text-slate-300" />
+        <ChevronRight size={14} className="text-slate-300 dark:text-slate-600 transition-colors duration-200" />
       </div>
 
       <div className="flex flex-col gap-3">
         {root.evolvesTo.map((evo) => (
           <div key={evo.pokemonId} className="flex items-center gap-2">
             <div className="flex flex-col justify-center min-w-[50px]">
-              <span className="text-[9px] text-slate-400 text-right pr-2">
+              <span className="text-[9px] text-slate-400 dark:text-slate-500 text-right pr-2 transition-colors duration-200">
                 {getEvolutionTriggerLabel(evo.evolutionDetails)}
               </span>
             </div>
