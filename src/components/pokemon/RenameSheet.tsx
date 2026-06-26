@@ -39,18 +39,18 @@ export default function RenameSheet({ pokemon, isOpen, onClose }: RenameSheetPro
     <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <SheetContent
         side="bottom"
-        className="rounded-t-[20px] px-6 pb-8 pt-6 max-w-md mx-auto w-full border-t border-slate-200 shadow-md bg-white focus-visible:outline-none"
+        className="rounded-t-[20px] px-6 pb-8 pt-6 max-w-md mx-auto w-full border-t border-slate-200 dark:border-slate-700 shadow-md bg-white dark:bg-slate-900 focus-visible:outline-none transition-colors duration-200"
       >
         <SheetHeader className="mb-4">
-          <SheetTitle className="font-display text-lg font-bold text-slate-900">Rename Pokémon</SheetTitle>
-          <SheetDescription className="text-slate-500 text-xs">
+          <SheetTitle className="font-display text-lg font-bold text-slate-900 dark:text-slate-100 transition-colors duration-200">Rename Pokémon</SheetTitle>
+          <SheetDescription className="text-slate-500 dark:text-slate-400 text-xs transition-colors duration-200">
             Change the nickname of your {capitalize(pokemon.name)}.
           </SheetDescription>
         </SheetHeader>
 
         <div className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="rename-input" className="text-xs font-semibold text-slate-500">
+            <Label htmlFor="rename-input" className="text-xs font-semibold text-slate-500 dark:text-slate-400 transition-colors duration-200">
               New Nickname
             </Label>
             <Input
@@ -60,7 +60,7 @@ export default function RenameSheet({ pokemon, isOpen, onClose }: RenameSheetPro
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
               placeholder={capitalize(pokemon.name)}
-              className="w-full h-11 bg-white border border-slate-200 rounded-[10px] text-sm focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:border-primary focus-visible:outline-none"
+              className="w-full h-11 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-[10px] text-sm dark:text-slate-100 focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:border-primary focus-visible:outline-none transition-colors duration-200"
             />
           </div>
 
@@ -74,7 +74,7 @@ export default function RenameSheet({ pokemon, isOpen, onClose }: RenameSheetPro
             <Button
               variant="ghost"
               onClick={onClose}
-              className="w-full h-12 text-slate-500 hover:text-slate-700 hover:bg-slate-50 rounded-full font-semibold text-sm transition-colors"
+              className="w-full h-12 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full font-semibold text-sm transition-colors duration-200"
             >
               Cancel
             </Button>

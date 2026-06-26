@@ -1,11 +1,10 @@
 'use client'
 
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { ChevronLeft } from 'lucide-react'
 import PokemonId from './PokemonId'
 import { TYPE_COLORS } from '@/lib/type-colors'
-import { getOfficialArtwork } from '@/lib/utils'
+import { PokemonSprite } from './PokemonSprite'
 
 export interface ArtworkContainerProps {
   name: string
@@ -23,15 +22,16 @@ export default function ArtworkContainer({
   const router = useRouter()
   const firstType = types[0]?.toLowerCase() || 'normal'
   const typeColor = TYPE_COLORS[firstType] || '#9CA3AF'
-  const bgOpacityHex = typeColor + '1f' // 12% opacity in hex is '1f'
-
-  const artworkUrl = getOfficialArtwork(id)
+  const bgOpacityHex = typeColor + '18'
 
   return (
     <div
-      className="w-full h-60 md:h-72 lg:h-80 lg:rounded-3xl relative flex items-center justify-center overflow-hidden transition-all duration-300"
-      style={{ backgroundColor: bgOpacityHex }}
+      className="relative w-full min-h-[200px] max-h-[340px] flex items-center justify-center overflow-hidden py-6 lg:rounded-3xl transition-all duration-300"
     >
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: bgOpacityHex }}
+      />
       <img
         src="/icons/pokeball.svg"
         alt=""
@@ -43,25 +43,23 @@ export default function ArtworkContainer({
         type="button"
         onClick={() => router.back()}
         aria-label="Go back"
-        className="absolute top-4 left-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-full p-2 shadow-sm border border-slate-100 hover:bg-white active:scale-95 transition-all z-10 flex items-center justify-center cursor-pointer"
+        className="absolute top-4 left-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-full p-2 shadow-sm border border-slate-100 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 active:scale-95 transition-all z-10 flex items-center justify-center cursor-pointer"
       >
-        <ChevronLeft size={20} className="text-slate-700" />
+        <ChevronLeft size={20} className="text-slate-700 dark:text-slate-300 transition-colors" />
       </button>
 
       {/* Pokémon ID Badge */}
-      <div className="absolute top-4 right-4 bg-white/70 backdrop-blur-sm rounded-full px-2.5 py-1 border border-slate-100/50 z-10 flex items-center justify-center">
+      <div className="absolute top-4 right-4 bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm rounded-full px-2.5 py-1 border border-slate-100/50 dark:border-slate-700/50 z-10 flex items-center justify-center transition-colors">
         <PokemonId id={id} />
       </div>
 
       {/* Official Artwork */}
-      <div className="relative w-[200px] h-[200px] flex items-center justify-center">
-        <Image
-          src={artworkUrl}
-          alt={`${name} official artwork`}
-          width={200}
-          height={200}
-          priority
-          className="object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
+      <div className="relative w-full h-500 flex items-center justify-center">
+        <PokemonSprite
+          id={id}
+          name={name}
+          variant="fluid"
+          priority={true}
         />
       </div>
     </div>

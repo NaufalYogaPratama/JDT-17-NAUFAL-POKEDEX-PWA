@@ -27,6 +27,10 @@ export function formatWeight(w: number): string {
   return `${(w / 10).toFixed(1)} kg`
 }
 
+export function getShowdownGif(id: number): string {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/${id}.gif`
+}
+
 export function getOfficialArtwork(id: number): string {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
 }

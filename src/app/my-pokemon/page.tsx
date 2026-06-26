@@ -60,7 +60,7 @@ export default function MyPokemonPage() {
   return (
     <PageWrapper className="pb-24">
       {/* Header Row */}
-      <div className="flex items-center justify-between mb-5 mt-6">
+      <div className="flex items-center justify-between mb-5">
         <div>
           <h1 className="font-display text-xl lg:text-2xl font-extrabold text-slate-900 dark:text-slate-100 transition-colors duration-200">My Pokédex</h1>
           <p className="hidden lg:block text-sm text-slate-400 dark:text-slate-500 mt-0.5 transition-colors duration-200">Your captured collection</p>

@@ -46,7 +46,7 @@ export default function ReleaseDialog({ pokemon, isOpen, onClose }: ReleaseDialo
           <Button
             variant="destructive"
             onClick={handleRelease}
-            className="w-full h-11 rounded-full font-semibold text-sm shadow-sm active:scale-[0.98] transition-transform"
+            className="w-full h-11 bg-red-500 dark:bg-red-600 hover:bg-red-600 dark:hover:bg-red-700 text-white rounded-full font-semibold text-sm shadow-sm active:scale-[0.98] transition-colors"
           >
             Release
           </Button>
