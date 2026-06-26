@@ -1,11 +1,10 @@
 'use client'
 
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { ChevronLeft } from 'lucide-react'
 import PokemonId from './PokemonId'
 import { TYPE_COLORS } from '@/lib/type-colors'
-import { getOfficialArtwork } from '@/lib/utils'
+import { PokemonSprite } from './PokemonSprite'
 
 export interface ArtworkContainerProps {
   name: string
@@ -25,7 +24,7 @@ export default function ArtworkContainer({
   const typeColor = TYPE_COLORS[firstType] || '#9CA3AF'
   const bgOpacityHex = typeColor + '1f' // 12% opacity in hex is '1f'
 
-  const artworkUrl = getOfficialArtwork(id)
+
 
   return (
     <div
@@ -55,13 +54,12 @@ export default function ArtworkContainer({
 
       {/* Official Artwork */}
       <div className="relative w-[200px] h-[200px] flex items-center justify-center">
-        <Image
-          src={artworkUrl}
-          alt={`${name} official artwork`}
-          width={200}
-          height={200}
-          priority
-          className="object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
+        <PokemonSprite
+          id={id}
+          name={name}
+          size={200}
+          priority={true}
+          className="drop-shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
         />
       </div>
     </div>

@@ -2,140 +2,83 @@
 
 import { useState } from 'react'
 import { usePokemonStore } from '@/store/pokemon-store'
-import { calculateCatchResult, getCatchRate } from '@/lib/catch'
-import CaptureResultSheet from './CaptureResultSheet'
+import { getOfficialArtwork, cn } from '@/lib/utils'
+import { CatchArena } from './CatchArena'
 import { toast } from 'sonner'
-import { Check } from 'lucide-react'
 
-export interface CatchButtonProps {
+interface CatchButtonProps {
   pokemonId: number
   pokemonName: string
   types: string[]
-  spriteUrl: string
-  fixed?: boolean
 }
 
-const PokeBallIcon = ({ className }: { className?: string }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <circle cx="12" cy="12" r="10" />
-    <path d="M2 12h20" />
-    <circle cx="12" cy="12" r="3" fill="currentColor" />
-  </svg>
-)
+export default function CatchButton({ pokemonId, pokemonName, types }: CatchButtonProps) {
+  const [arenaOpen, setArenaOpen] = useState(false)
+  const { addCapturedPokemon, capturedPokemon } = usePokemonStore()
 
-export default function CatchButton({
-  pokemonId,
-  pokemonName,
-  types,
-  spriteUrl,
-  fixed = false,
-}: CatchButtonProps) {
-  const [isThrowing, setIsThrowing] = useState(false)
-  const [showResult, setShowResult] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
-
-  const addCapturedPokemon = usePokemonStore((state) => state.addCapturedPokemon)
-  const isAlreadyCaptured = usePokemonStore((state) =>
-    state.capturedPokemon.some((p) => p.id === pokemonId)
-  )
-
-  const triggerThrow = () => {
-    setIsThrowing(true)
-    setTimeout(() => {
-      const rate = getCatchRate(pokemonId)
-      const success = calculateCatchResult(rate)
-      setIsSuccess(success)
-      setIsThrowing(false)
-      setShowResult(true)
-    }, 800)
-  }
+  const alreadyCaught = capturedPokemon.some(p => p.id === pokemonId)
 
   const handleSave = (nickname: string) => {
     addCapturedPokemon({
       id: pokemonId,
       name: pokemonName,
-      nickname: nickname,
-      types: types,
-      sprite: spriteUrl,
+      nickname,
+      types,
+      sprite: getOfficialArtwork(pokemonId),
       capturedAt: new Date().toISOString(),
     })
-    setShowResult(false)
-    setTimeout(() => {
-      toast.success(`${nickname} was caught!`, {
-        description: 'Added to your collection.',
-      })
-    }, 300)
-  }
-
-  const handleRetry = () => {
-    setShowResult(false)
-    // Wait for sheet closing transition before throwing again
-    setTimeout(() => {
-      triggerThrow()
-    }, 300)
-  }
-
-  const handleClose = () => {
-    setShowResult(false)
+    setArenaOpen(false)
+    toast.success(`${nickname} added to your Pokédex!`)
   }
 
   return (
     <>
-      <div className={fixed ? "fixed bottom-16 left-0 right-0 px-4 pb-4 pt-6 bg-gradient-to-t from-slate-50 dark:from-slate-900 via-slate-50/90 dark:via-slate-900/90 to-transparent z-30 transition-colors duration-200" : "w-full"}>
-        <div className={fixed ? "max-w-md mx-auto" : "w-full"}>
-          <button
-            type="button"
-            onClick={triggerThrow}
-            disabled={isAlreadyCaptured || isThrowing}
-            className={`w-full h-12 flex items-center justify-center rounded-full font-semibold text-sm transition-all duration-150 ${
-              isAlreadyCaptured
-                ? 'bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none'
-                : isThrowing
-                ? 'bg-slate-800 dark:bg-slate-700 text-white shadow-none cursor-wait'
-                : 'bg-primary hover:bg-primary-dark text-white shadow-lg shadow-red-500/30 active:scale-[0.98]'
-            }`}
-          >
-            {isAlreadyCaptured ? (
-              <>
-                <Check size={16} className="mr-2 stroke-[3]" />
-                Already in your Pokédex
-              </>
-            ) : isThrowing ? (
-              <>
-                <PokeBallIcon className="h-5 w-5 mr-2 animate-spin text-white" />
-                Throwing...
-              </>
-            ) : (
-              <>
-                <PokeBallIcon className="h-5 w-5 mr-2 text-white" />
-                Throw Poké Ball!
-              </>
-            )}
-          </button>
-        </div>
+      {/* Mobile: fixed bottom */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 px-4 pb-6 pt-4
+                      bg-gradient-to-t from-[#F8FAFC] dark:from-slate-900 via-[#F8FAFC]/90 to-transparent z-30">
+        <button
+          onClick={() => setArenaOpen(true)}
+          disabled={alreadyCaught}
+          className={cn(
+            "w-full h-13 rounded-full font-semibold text-sm",
+            "flex items-center justify-center gap-2",
+            alreadyCaught
+              ? "bg-slate-100 dark:bg-slate-800 text-slate-400 cursor-not-allowed"
+              : "bg-primary text-white shadow-lg shadow-primary/30 hover:bg-primary-dark"
+          )}
+        >
+          <img src="/icons/pokeball.svg" alt="" aria-hidden="true" className="w-5 h-5 opacity-90" />
+          {alreadyCaught ? 'Already caught!' : 'Throw Poké Ball!'}
+        </button>
       </div>
 
-      <CaptureResultSheet
-        isOpen={showResult}
-        onClose={handleClose}
-        isSuccess={isSuccess}
-        pokemon={{
-          id: pokemonId,
-          name: pokemonName,
-          types,
-          spriteUrl,
-        }}
-        onSave={handleSave}
-        onRetry={handleRetry}
-      />
+      {/* Desktop: regular button in left column */}
+      <div className="hidden lg:block mt-6">
+        <button
+          onClick={() => setArenaOpen(true)}
+          disabled={alreadyCaught}
+          className={cn(
+            "w-full h-12 rounded-full font-semibold text-sm",
+            "flex items-center justify-center gap-2",
+            alreadyCaught
+              ? "bg-slate-100 dark:bg-slate-800 text-slate-400 cursor-not-allowed"
+              : "bg-primary text-white shadow-lg shadow-primary/30 hover:bg-primary-dark"
+          )}
+        >
+          <img src="/icons/pokeball.svg" alt="" aria-hidden="true" className="w-5 h-5 opacity-90" />
+          {alreadyCaught ? 'Already caught!' : 'Throw Poké Ball!'}
+        </button>
+      </div>
+
+      {/* Catch Arena */}
+      {arenaOpen && (
+        <CatchArena
+          isOpen={arenaOpen}
+          pokemon={{ id: pokemonId, name: pokemonName, types }}
+          onClose={() => setArenaOpen(false)}
+          onSave={handleSave}
+        />
+      )}
     </>
   )
 }

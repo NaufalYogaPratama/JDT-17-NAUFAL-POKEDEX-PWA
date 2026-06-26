@@ -75,14 +75,11 @@ export default function PokemonDetailPage() {
             </div>
           </div>
           
-          <div className="hidden lg:block mt-8">
-            <CatchButton
-              pokemonId={data.id}
-              pokemonName={data.name}
-              types={types}
-              spriteUrl={officialSprite}
-            />
-          </div>
+          <CatchButton
+            pokemonId={data.id}
+            pokemonName={data.name}
+            types={types}
+          />
         </div>
 
         {/* Right column — stats, species, evolution */}
@@ -169,16 +166,7 @@ export default function PokemonDetailPage() {
         </div>
       </div>
 
-      {/* Mobile Sticky Catch Button */}
-      <div className="lg:hidden">
-        <CatchButton
-          fixed
-          pokemonId={data.id}
-          pokemonName={data.name}
-          types={types}
-          spriteUrl={officialSprite}
-        />
-      </div>
+
     </div>
   )
 }
