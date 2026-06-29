@@ -6,18 +6,15 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'raw.githubusercontent.com',
-        pathname: '/PokeAPI/sprites/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'raw.githubusercontent.com',
-        pathname: '/PokeAPI/sprites/**',
+        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'pokeapi.co',
+        pathname: '/**',
       },
     ],
+    minimumCacheTTL: 60,
   },
 }
 
